@@ -1,0 +1,19 @@
+app:
+  build: ./flask_app
+  ports:
+    - "5000:5000"
+  environment:
+    - FLASK_APP=app.py
+
+web:
+  build: .
+#  volumes:
+#    - ./templates:/etc/nginx/templates
+  ports:
+    - "6831:80"
+#  depends_on:
+#    - app
+  environment:
+    APP_HOST: app
+    NGINX_HOST: foobar.com
+    NGINX_PORT: 80
