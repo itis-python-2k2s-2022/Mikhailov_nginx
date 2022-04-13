@@ -1,19 +1,24 @@
-app:
-  build: ./flask_app
-  ports:
-    - "5000:5000"
-  environment:
-    - FLASK_APP=app.py
+version: '3'
 
-web:
-  build: .
-#  volumes:
-#    - ./templates:/etc/nginx/templates
-  ports:
-    - "6831:80"
-#  depends_on:
-#    - app
-  environment:
-    APP_HOST: app
-    NGINX_HOST: foobar.com
-    NGINX_PORT: 80
+services:
+  defort_flask:
+    build: ./flask_app
+    expose:
+      - 5000
+    ports:
+      - "5000:5000"
+    hostname: defort_flask
+    domainname: defort_flask.com
+    environment:
+      - FLASK_APP=app.py
+
+  nginx:
+    build: .
+    ports:
+      - "1337:80"
+    depends_on:
+      - defort_flask
+    environment:
+      APP_HOST: defort_flask
+      NGINX_HOST: foobar.com
+      NGINX_PORT: 80
