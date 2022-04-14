@@ -11,7 +11,4 @@ RUN pip freeze
 
 COPY . .
 
-ENV FLASK_APP "app/flask_app/app.py"
-
-CMD gunicorn --bind 0.0.0.0:5000 wsgi:app
-
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]

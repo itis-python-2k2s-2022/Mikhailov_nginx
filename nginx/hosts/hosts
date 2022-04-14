@@ -1,4 +1,8 @@
-127.0.0.1       defort_flask.com
+127.0.0.1       defort_flask_host.com
+127.0.0.1       www.defort_flask_host.com
+127.0.0.1       fast_api_host.com
+127.0.0.1       www.fast_api_host.com
+
 127.0.0.1       localhost
 ::1     localhost ip6-localhost ip6-loopback
 fe00::0 ip6-localnet

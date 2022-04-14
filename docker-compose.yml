@@ -10,14 +10,42 @@ services:
     hostname: defort_flask
     domainname: defort_flask.com
     environment:
+      - FLASK_APP=app/flask_app/app.py
+    extra_hosts:
+      - "defort_flask_host.com:127.0.0.1"
+      - "defort_flask:127.0.0.1"
+      - "www.defort_flask_host.com:127.0.0.1"
+
+  fast_api:
+    build: ./fast_api_app
+    expose:
+      - 8000
+    ports:
+      - "8000:8000"
+    hostname: fast_api
+    domainname: fast_api.com
+    environment:
       - FLASK_APP=app.py
+    extra_hosts:
+      - "fast_api_host.com:127.0.0.1"
+      - "fast_api:127.0.0.1"
+      - "www.fast_api_host.com:127.0.0.1"
+
 
   nginx:
     build: .
     ports:
-      - "1337:80"
+      - "80:80"
     depends_on:
       - defort_flask
+      - fast_api
+    extra_hosts:
+      - "defort_flask_host.com:127.0.0.1"
+      - "defort_flask:127.0.0.1"
+      - "www.defort_flask_host.com:127.0.0.1"
+      - "fast_api_host.com:127.0.0.1"
+      - "fast_api:127.0.0.1"
+      - "www.fast_api_host.com:127.0.0.1"
     environment:
       APP_HOST: defort_flask
       NGINX_HOST: foobar.com
