@@ -12,7 +12,4 @@ COPY ./nginx/sites-available/fast_api.com.conf ./etc/nginx/sites-enable/fast_api
 RUN rm ./etc/nginx/conf.d/default.conf
 COPY ./nginx/nginx_conf/nginx.conf ./etc/nginx/nginx.conf
 
-COPY ./html/*.html /etc/nginx/html/
-COPY ./html/*.css /etc/nginx/html/
-COPY ./html/*.png /etc/nginx/html/
-COPY ./html/*.js /etc/nginx/html/
+COPY ./nginx/static /etc/nginx/static/

@@ -10,7 +10,7 @@ services:
     hostname: defort_flask
     domainname: defort_flask.com
     environment:
-      - FLASK_APP=app/flask_app/app.py
+      - FLASK_APP=app.py
 
   fast_api:
     build: ./fast_api_app
